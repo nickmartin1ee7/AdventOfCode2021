@@ -1,21 +1,15 @@
 ﻿using BenchmarkDotNet.Attributes;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace Challanges;
 
 [MemoryDiagnoser]
 public class Day4 : Day<int>
 {
-    private string[] linesPart1;
-    private string[] linesPart2;
+    private string[] lines;
 
     public Day4()
     {
-        linesPart1 = File.ReadAllLines("day4part1.txt");
-        linesPart2 = File.ReadAllLines("day4part1.txt");
+        lines = File.ReadAllLines("day4part1.txt");
     }
 
     private class Board
@@ -147,11 +141,11 @@ public class Day4 : Day<int>
         var currentBoard = new int[5, 5];
         int y = 0;
 
-        for (int i = 0; i < linesPart1.Length; i++)
+        for (int i = 0; i < lines.Length; i++)
         {
             if (i == 0)
             {
-                picks = linesPart1[i].Split(',')
+                picks = lines[i].Split(',')
                     .Select(x => int.Parse(x))
                     .ToArray();
                 continue;
@@ -161,7 +155,7 @@ public class Day4 : Day<int>
                 continue;
             }
 
-            if (string.IsNullOrEmpty(linesPart1[i]))
+            if (string.IsNullOrEmpty(lines[i]))
             {
                 boards.Add(new Board(currentBoard));
                 currentBoard = new int[5, 5];
@@ -169,7 +163,7 @@ public class Day4 : Day<int>
             }
             else
             {
-                var lineKeys = linesPart1[i].Split(' ')
+                var lineKeys = lines[i].Split(' ')
                     .Where(x => !string.IsNullOrEmpty(x))
                     .Select(x => int.Parse(x))
                     .ToArray();
@@ -206,11 +200,11 @@ public class Day4 : Day<int>
         var currentBoard = new int[5, 5];
         int y = 0;
 
-        for (int i = 0; i < linesPart2.Length; i++)
+        for (int i = 0; i < lines.Length; i++)
         {
             if (i == 0)
             {
-                picks = linesPart2[i].Split(',')
+                picks = lines[i].Split(',')
                     .Select(x => int.Parse(x))
                     .ToArray();
                 continue;
@@ -220,7 +214,7 @@ public class Day4 : Day<int>
                 continue;
             }
 
-            if (string.IsNullOrEmpty(linesPart2[i]))
+            if (string.IsNullOrEmpty(lines[i]))
             {
                 boards.Add(new Board(currentBoard));
                 currentBoard = new int[5, 5];
@@ -228,7 +222,7 @@ public class Day4 : Day<int>
             }
             else
             {
-                var lineKeys = linesPart2[i].Split(' ')
+                var lineKeys = lines[i].Split(' ')
                     .Where(x => !string.IsNullOrEmpty(x))
                     .Select(x => int.Parse(x))
                     .ToArray();
